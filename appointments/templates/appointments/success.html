@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Success</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/styles.css' %}">
+</head>
+<body>
+    <h1>Appointment Booked Successfully!</h1>
+    <p>Thank you for booking your appointment.</p>
+    <p><strong>Mechanic:</strong> {{ mechanic.name }}</p>
+    <p><strong>Remaining Slots:</strong> {{ remaining_slots }}</p>
+    <a href="{% url 'user_panel' %}">
+        <button type="button">Book Another Appointment</button>
+    </a>
+</body>
+</html>

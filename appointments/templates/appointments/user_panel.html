@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Panel</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/styles.css' %}">
+
+</head>
+<body>
+    <h1>!!  Welcome to CSE Engineers's Garage !!</h1>
+    <h2>  Every Mechanic here is a CSE graduate </h2>
+               <h3>  Book an Appointment</h3>
+                <form method="post">
+                       {% csrf_token %}
+                       {{ client_form.as_p }}
+                       {{ appointment_form.as_p }}
+                       <button type="submit">Book Appointment</button>
+                   </form>
+                   
+
+    <div style="margin-top: 20px; text-align:center">
+        <a href="{% url 'admin_panel' %}">
+            <button type="button">Go to Admin Panel</button>
+        </a>
+    </div>
+</body>
+</html>

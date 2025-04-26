@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/styles.css' %}">
+</head>
+<body>
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="{% url 'user_panel' %}">
+            <button type="button">Home</button>
+        </a>
+    </div>
+        <h1>Manage Appointments</h1>
+        <table>
+            <tr>
+                <th>Client Name</th>
+                <th>Phone</th>
+                <th>Car License</th>
+                <th>Appointment Date</th>
+                <th>Mechanic</th>
+                <th>Actions</th>
+            </tr>
+            {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.client.name }}</td>
+                <td>{{ appointment.client.phone }}</td>
+                <td>{{ appointment.client.car_license_number }}</td>
+                <td>{{ appointment.appointment_date }}</td>
+                <td>{{ appointment.mechanic.name }}</td>
+                <td><a href="{% url 'edit_appointment' appointment.pk %}">Edit</a></td>
+                <td><a href="{% url 'delete_appointment' appointment.pk %}"onclick="return confirm('Are you sure you want to delete this appointment?');">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+
+    
+    <h2>Mechanics</h2>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Specialization</th>
+            <th>Max Appointments</th>
+            <th>Actions</th>
+        </tr>
+        {% for mechanic in mechanics %}
+        <tr>
+            <td>{{ mechanic.name }}</td>
+            <td>{{ mechanic.specialization }}</td>
+            <td>{{ mechanic.max_appointments }}</td>
+            <td>
+                <a href="{% url 'remove_mechanic' mechanic.pk %}">Remove</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="{% url 'add_mechanic' %}">
+            <button type="button">Add Mechanic</button>
+        </a>
+    </div>
+    </body>
+    </html>
